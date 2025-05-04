@@ -1,0 +1,50 @@
+# Python cache and compiled files
+__pycache__/
+*.py[cod]         # Compiled Python files: .pyc, .pyo, .pyd
+*.so              # Shared object files (C extensions)
+*.egg-info/       # Metadata directory from setuptools
+*.pyd             # Compiled Python files on Windows
+
+# Data files (ignored outputs, intermediate data)
+data/processed/   # Processed data directory
+data/*.csv        # All CSV data files
+data/*.xlsx       # All Excel files
+data/*.json       # All JSON files
+!data/raw/        # EXCEPTION: Keep raw/ folder under data/
+
+# Machine learning model artifacts
+*.pkl             # Pickle files
+*.joblib          # Joblib-serialized models
+*.npz             # Numpy compressed arrays
+*.h5              # HDF5 model files (e.g. from Keras)
+*.stan            # Stan model files
+*.npy             # Numpy arrays
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/  # Jupyter's auto-saved checkpoints
+
+# Editor and system-specific files
+.vscode/          # VS Code configuration
+*.swp             # Vim swap files
+*.bak             # Backup files
+
+# macOS system file
+.DS_Store         # macOS folder metadata
+
+# Virtual environments and environment variables
+venv/             # Virtualenv directory
+env/              # Alternative env name
+.env/             # Environment variable config folder (if used)
+
+# Output files and figures
+figures/          # Generated figures directory
+*.png             # PNG image files
+*.svg             # Scalable vector graphics
+*.pdf             # PDF figures
+
+# Log files
+logs/             # Logging output directory
+*.log             # Individual log files
+
+# Notebook autosaved checkpoint files with naming pattern
+notebooks/*-checkpoint.ipynb  # Autosaved versions of notebooks
