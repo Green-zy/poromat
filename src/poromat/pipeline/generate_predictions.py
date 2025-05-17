@@ -6,7 +6,7 @@ from poromat.models.lightgbm import predict_stress_curve_lgb
 from poromat.models.interpolation import predict_interp
 from poromat.utils.io import save_stress_strain_csv
 from poromat.utils.plot import plot_stress_curve
-
+import warnings
 
 def generate_prediction(
     model_name,
@@ -37,6 +37,22 @@ def generate_prediction(
     show_plot : bool
         Whether to display the prediction plot.
     """
+    # Porosity
+    if porosity < 0:
+        raise ValueError("Invalid porosity: must be in the range [0, 40].")
+    elif porosity > 40:
+        warnings.warn("Porosity > 40 is outside the recommended range [0, 40].", RuntimeWarning)
+
+    # Temperature
+    if T < 20 or T > 400:
+        warnings.warn(f"Temperature T={T} is outside the recommended range [20, 400] K.", RuntimeWarning)
+
+    # Strain rate
+    if rate <= 0:
+        raise ValueError("Invalid strain rate: must be positive and in the range (0, 4500].")
+    elif rate < 500 or rate > 4500:
+        warnings.warn(f"Strain rate {rate} is outside the typical range [500, 4500] 1/s.", RuntimeWarning)
+
     model_name = model_name.lower()
     if model_name not in {"bnn", "lightgbm", "interpolation"}:
         raise ValueError(f"Unknown model: {model_name}")
