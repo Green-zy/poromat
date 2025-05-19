@@ -20,7 +20,7 @@ def plot_stress_curve(strain, stress, stress_lower=None, stress_upper=None,
     label : str
         Label for the curve.
     ci : bool
-        Whether to show credible interval and legend (BNN only).
+        Whether to show credible interval and legend (Meta only).
     """
     plt.figure(figsize=(7, 5))
     plt.plot(strain, stress, label=label if ci else None, color="blue")
@@ -28,14 +28,14 @@ def plot_stress_curve(strain, stress, stress_lower=None, stress_upper=None,
     if ci and stress_lower is not None and stress_upper is not None:
         plt.fill_between(
             strain, stress_lower, stress_upper,
-            alpha=0.5, label="95% Credible Interval", color="pink"
+            alpha=0.5, label="MC Dropout Uncertainty", color="pink"
         )
 
     plt.xlabel("Strain")
     plt.ylabel("Stress (MPa)")
     if title:
         plt.title(title)
-    plt.grid(True, alpha=0.7)
+    plt.grid(True, alpha=0.5)
 
     if ci:
         plt.legend()

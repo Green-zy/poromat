@@ -4,7 +4,7 @@ from .utils.io import save_stress_strain_csv
 __all__ = ["plot", "save_csv"]
 
 
-def plot(porosity, temperature, strain_rate, step=0.005, method="bnn"):
+def plot(porosity, temperature, strain_rate, step=0.005, method="meta"):
     """
     Plot the stress-strain curve using the specified model.
 
@@ -13,15 +13,15 @@ def plot(porosity, temperature, strain_rate, step=0.005, method="bnn"):
     porosity : float
         Porosity (0–40)
     temperature : float
-        Temperature in Kelvin
+        Temperature in degrees Celsius
     strain_rate : float
         Strain rate (1/s)
     step : float
         Strain step (default: 0.005)
     method : str
-        One of 'bnn', 'lightgbm', 'interpolation'
+        One of 'meta', 'lightgbm', or 'interpolation'
     """
-    return generate_prediction(
+    generate_prediction(
         model_name=method,
         porosity=porosity,
         T=temperature,
@@ -32,7 +32,7 @@ def plot(porosity, temperature, strain_rate, step=0.005, method="bnn"):
     )
 
 
-def save_csv(porosity, temperature, strain_rate, step=0.005, method="bnn", path=None):
+def save_csv(porosity, temperature, strain_rate, step=0.005, method="meta", path=None):
     """
     Save predicted stress-strain data to CSV using the specified model.
 
@@ -41,13 +41,13 @@ def save_csv(porosity, temperature, strain_rate, step=0.005, method="bnn", path=
     porosity : float
         Porosity (0–40)
     temperature : float
-        Temperature in Kelvin
+        Temperature in degrees Celsius
     strain_rate : float
         Strain rate (1/s)
     step : float
         Strain step (default: 0.005)
     method : str
-        One of 'bnn', 'lightgbm', 'interpolation'
+        One of 'meta', 'lightgbm', or 'interpolation'
     path : str or None
         Folder to save output CSV (default: 'results/outputs')
     """

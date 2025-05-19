@@ -1,2 +1,2 @@
 mae,colsample_bytree,learning_rate,max_depth,min_child_samples,n_estimators,num_leaves,reg_alpha,reg_lambda,subsample,subsample_freq
-2.27,0.94,0.21,51,23,160,101,2.93,3.73,0.83,3
+3.32,0.94,0.21,51,23,160,101,2.93,3.73,0.83,3

@@ -1,0 +1,2 @@
+mae,inner_lr,outer_lr,meta_batch_size,hidden_dim,inner_steps,num_iterations,support_size,query_size
+0.042846012860536575,0.035132983676407964,0.007332002642413114,8,32,3,1000,10,5

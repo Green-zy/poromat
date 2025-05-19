@@ -23,7 +23,7 @@ def save_stress_strain_csv(strain, stress, filename_prefix, model_name,
     porosity : float or None
         Porosity value to include in metadata (optional).
     temperature : float or None
-        Temperature value in Kelvin (optional).
+        Temperature value in degrees Celsius (optional).
     strainrate : float or None
         Strain rate in 1/s (optional).
     """
@@ -48,4 +48,8 @@ def save_stress_strain_csv(strain, stress, filename_prefix, model_name,
         if strainrate is not None:
             f.write(f"# strain rate = {strainrate} 1/s\n")
         f.write("# -----------------------------\n")
-        df.to_csv(f, index=False)
+        df.to_csv(f, index=False, float_format="%.4f")
+
+    print(f"[SAVED] CSV saved to: {filepath}")
+
+
