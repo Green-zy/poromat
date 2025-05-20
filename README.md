@@ -80,7 +80,7 @@ Based on both performance trends and materials knowledge:
 **Environment Setup:** This project requires Python 3.10. 
 
 ```bash
-pip install poromat
+pip install poromat==0.1.2
 ```
 
 The `.pkl` and `.csv` files are required to run predictions and are not included in the PyPI package.
