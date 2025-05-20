@@ -42,7 +42,7 @@ Navigation
    :maxdepth: 2
    :caption: Contents:
 
-   usage.md
+   usage
    changelog
 
 About

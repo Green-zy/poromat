@@ -29,7 +29,10 @@ myst_enable_extensions = [
 autoapi_dirs = ["../src"]
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
-
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
