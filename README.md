@@ -99,6 +99,7 @@ poromat.download_all_models()
 
 ```python
 import poromat
+poromat.download_data()
 poromat.download_all_models() # You need to download the models
 
 poromat.plot(16, 300, 3300, step=0.002, method="meta")
