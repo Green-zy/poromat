@@ -4,10 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [0.1.1] - 2024-07-03
+## [0.1.1] - 2025-05-19
 ### Added
-- `poromat.download_meta_model()` function to automatically download pretrained meta model files (`.pkl`) from GitHub.
-- Clear error message when meta model files are missing, with guidance to use the download function.
+- `poromat.download_meta_model()` function to automatically download pretrained model files (`.pkl`) from GitHub.
+- Clear error message when model files are missing, with guidance to use the download function.
 - `requests` dependency for model downloading support.
 
 ### Changed
@@ -15,7 +15,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [0.1.0] - 2024-07-01
+## [0.1.0] - 2025-05-19
 ### Added
 - Initial release of the `poromat` package.
 - Stress–strain prediction using three regression methods:
