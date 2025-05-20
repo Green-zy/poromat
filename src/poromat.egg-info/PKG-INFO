@@ -1,3 +1,33 @@
+Metadata-Version: 2.4
+Name: poromat
+Version: 0.1.0
+Summary: Stress-strain prediction with porosity-aware models (Interpolation, LightGBM, Meta_learning)
+Author-email: Yun Zhou <robbiezhou1@gmail.com>
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy<2.0,>=1.23
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: scikit-learn>=1.6.1
+Requires-Dist: matplotlib>=3.9.2
+Requires-Dist: lightgbm>=4.6.0
+Requires-Dist: jax==0.4.28
+Requires-Dist: jaxlib==0.4.28
+Requires-Dist: numpyro==0.18.0
+Requires-Dist: joblib
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: torchaudio
+Requires-Dist: learn2learn
+Requires-Dist: qpth>=0.0.18
+Provides-Extra: dev
+Requires-Dist: pytest>=8.3.4; extra == "dev"
+Requires-Dist: jupyter; extra == "dev"
+Requires-Dist: notebook; extra == "dev"
+Requires-Dist: ipywidgets; extra == "dev"
+Requires-Dist: scikit-posthocs; extra == "dev"
+Dynamic: license-file
+
 # poromat
 
 A Python package for modeling stress–strain behavior of porous titanium alloys under various strain rates and temperatures, based on extremely limited experimental data.
@@ -8,7 +38,7 @@ This project constructs global stress–strain prediction models for porous Ti a
 
 ## Dataset Structure
 
-**Porosity 26%**
+**Porosity 26**
 ```
 ├── 25°C:  [1200, 2300, 3600, 5200]  
 ├── 100°C: [950, 2200, 3000, 4200]  
@@ -16,7 +46,7 @@ This project constructs global stress–strain prediction models for porous Ti a
 └── 300°C: [1100, 1900, 2900, 3700]  
 ```
 
-**Porosity 36%**
+**Porosity 36**
 ```
 ├── 25°C:  [1000, 2000, 3000]  
 ├── 100°C: [1300, 2050, 2350, 3400, 3700]  
@@ -40,28 +70,16 @@ This project constructs global stress–strain prediction models for porous Ti a
    Two hidden layers (see [code](https://github.com/Green-zy/poromat/blob/master/src/poromat/models/meta_net.py)) trained using [learn2learn](https://learn2learn.net/) for fast adaptation to new porosity conditions.  
    Supports **credible intervals** via MC Dropout.
 
-## Installation and Model File Setup
-
-**Environment Setup:** This project requires Python 3.10. 
+## Installation
 
 ```bash
 pip install poromat
-```
-
-The following `.pkl` files are required to run predictions and are not included in the PyPI package.
-
-You can download them using:
-
-```python
-import poromat
-poromat.download_all_models()
 ```
 
 ## Quick Start
 
 ```python
 import poromat
-poromat.download_all_models() # You need to download the models
 
 poromat.plot(16, 300, 3300, step=0.002, method="meta")
 

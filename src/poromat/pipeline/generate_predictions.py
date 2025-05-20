@@ -1,4 +1,6 @@
 import warnings
+import os
+from ..config import MODEL_PATHS
 from ..models.lightgbm import predict_stress_curve_lgb
 from ..models.interpolation import predict_interp
 from ..models.meta import predict_stress_curve_meta
@@ -55,6 +57,28 @@ def generate_prediction(model_name, porosity, T, rate, strain_step=0.005,
         raise ValueError("strainrate must be positive")
     if rate < 500 or rate > 4500:
         warnings.warn("recommended strainrate from 500 to 4500", UserWarning)
+
+     # Check model file(s)
+    if model_name == "meta":
+        required_files = [
+            MODEL_PATHS["meta"],
+            MODEL_PATHS["meta_scaler_X"],
+            MODEL_PATHS["meta_scaler_y"]
+        ]
+    elif model_name == "lightgbm":
+        required_files = [MODEL_PATHS["lightgbm"]]
+    elif model_name == "interpolation":
+        required_files = [MODEL_PATHS["interpolation"]]
+    else:
+        raise ValueError(f"Unknown model: {model_name}. "
+                         "Choose from 'lightgbm', 'interpolation', or 'meta'.")
+
+    for file in required_files:
+        if not os.path.exists(file):
+            raise FileNotFoundError(
+                f"Required file not found: {file}\n"
+                f"Run `poromat.download_all_models()` to download all required model files."
+            )   
 
     # Model Prediction
     if model_name == "lightgbm":

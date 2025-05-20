@@ -1,7 +1,8 @@
 from .pipeline.generate_predictions import generate_prediction
 from .utils.io import save_stress_strain_csv
+from .utils.download import download_model, download_all_models
 
-__all__ = ["plot", "save_csv"]
+__all__ = ["plot", "save_csv", "download_model", "download_all_models"]
 
 
 def plot(porosity, temperature, strain_rate, step=0.005, method="meta"):
