@@ -2,6 +2,8 @@ import os
 import requests
 
 _MODEL_BASE_URL = "https://raw.githubusercontent.com/Green-zy/poromat/master/results/models/"
+_DATA_BASE_URL = "https://raw.githubusercontent.com/Green-zy/poromat/master/data/"
+
 _MODEL_FILES = {
     "lightgbm": "lgb_model.pkl",
     "interpolation": "ada_dt_model.pkl",
@@ -9,6 +11,8 @@ _MODEL_FILES = {
     "meta_scaler_X": "meta_scaler_X.pkl",
     "meta_scaler_y": "meta_scaler_y.pkl"
 }
+
+_DATA_FILES = ["full_data.csv"]
 
 def download_model(model_name):
     """
@@ -38,3 +42,21 @@ def download_all_models():
     """
     for model_name in _MODEL_FILES:
         download_model(model_name)
+
+def download_data():
+    """
+    Download training data required by the meta model.
+    """
+    os.makedirs("data", exist_ok=True)
+    for fname in _DATA_FILES:
+        url = _DATA_BASE_URL + fname
+        local_path = os.path.join("data", fname)
+        print(f"Downloading data file: {fname}")
+        try:
+            response = requests.get(url)
+            response.raise_for_status()
+            with open(local_path, "wb") as f:
+                f.write(response.content)
+            print(f"Saved to {local_path}")
+        except Exception as e:
+            print(f"Failed to download {fname}: {e}")

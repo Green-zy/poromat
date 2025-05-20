@@ -48,12 +48,13 @@ This project constructs global stress–strain prediction models for porous Ti a
 pip install poromat
 ```
 
-The following `.pkl` files are required to run predictions and are not included in the PyPI package.
+The `.pkl` and `.csv` files are required to run predictions and are not included in the PyPI package.
 
 You can download them using:
 
 ```python
 import poromat
+poromat.download_data()
 poromat.download_all_models()
 ```
 

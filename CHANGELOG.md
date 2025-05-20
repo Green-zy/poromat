@@ -4,9 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [0.1.2] - 2025-05-19
+### Added
+- `poromat.download_data()` function to download required training data (`full_data.csv`) from GitHub.
+- Improved error message when data file is missing in `meta` model, guiding user to run `download_data()`.
+- Documentation now includes guidance for both model and data setup.
+
+### Changed
+- Unified `download.py` to handle both model and data downloading in a consistent interface.
+- Updated `__init__.py` to expose `download_data()` in public API (`__all__`).
+
+---
+
 ## [0.1.1] - 2025-05-19
 ### Added
-- `poromat.download_meta_model()` function to automatically download pretrained model files (`.pkl`) from GitHub.
+- `poromat.download_model()` and `poromat.download_all_models()` to automatically download pretrained `.pkl` files from GitHub.
 - Clear error message when model files are missing, with guidance to use the download function.
 - `requests` dependency for model downloading support.
 
@@ -26,5 +38,3 @@ All notable changes to this project will be documented in this file.
   - `poromat.plot()`
   - `poromat.save_csv()`
 - Support for predicting porous titanium alloy behavior across temperature, strain rate, and porosity inputs.
-
----

@@ -16,5 +16,6 @@ src/poromat/models/meta_net.py
 src/poromat/pipeline/__init__.py
 src/poromat/pipeline/generate_predictions.py
 src/poromat/utils/__init__.py
+src/poromat/utils/download.py
 src/poromat/utils/io.py
 src/poromat/utils/plot.py
