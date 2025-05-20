@@ -1,3 +1,4 @@
+import warnings
 from ..models.lightgbm import predict_stress_curve_lgb
 from ..models.interpolation import predict_interp
 from ..models.meta import predict_stress_curve_meta
@@ -6,7 +7,7 @@ from ..utils.io import save_stress_strain_csv
 
 
 def generate_prediction(model_name, porosity, T, rate, strain_step=0.005,
-                       save_csv=False, show_plot=False, output_dir=None):
+                        save_csv=False, show_plot=False, output_dir=None):
     """
     Generate stress-strain predictions using the specified model.
 
@@ -17,9 +18,9 @@ def generate_prediction(model_name, porosity, T, rate, strain_step=0.005,
     porosity : float
         Porosity value (0-40)
     T : float
-        Temperature in degrees Celsius
+        Temperature in degrees Celsius (recommended: 20-400)
     rate : float
-        Strain rate (1/s)
+        Strain rate (1/s) (recommended: 500-4500)
     strain_step : float
         Strain step size (default: 0.005)
     save_csv : bool
@@ -40,6 +41,22 @@ def generate_prediction(model_name, porosity, T, rate, strain_step=0.005,
     stress_upper : np.ndarray or None
         Upper bound of uncertainty (only for meta model)
     """
+
+    # Input Validation
+    if porosity < 0:
+        raise ValueError("porosity can not be negative")
+    if porosity > 40:
+        warnings.warn("recommended porosity from 0 to 40", UserWarning)
+
+    if not (20 <= T <= 400):
+        warnings.warn("recommended T from 20 to 400 Celsius degrees", UserWarning)
+
+    if rate <= 0:
+        raise ValueError("strainrate must be positive")
+    if rate < 500 or rate > 4500:
+        warnings.warn("recommended strainrate from 500 to 4500", UserWarning)
+
+    # Model Prediction
     if model_name == "lightgbm":
         strain, stress = predict_stress_curve_lgb(porosity, T, rate, strain_step)
         stress_lower, stress_upper = None, None
@@ -58,19 +75,16 @@ def generate_prediction(model_name, porosity, T, rate, strain_step=0.005,
 
     else:
         raise ValueError(f"Unknown model: {model_name}. "
-                        "Choose from 'lightgbm', 'interpolation', or 'meta'.")
+                         "Choose from 'lightgbm', 'interpolation', or 'meta'.")
 
-    # Generate plot title
     title = f"{model_name.capitalize()} Model: Porosity={porosity}, T={T}°C, Rate={rate}/s"
 
-    # Show plot if requested
     if show_plot:
         plot_stress_curve(
             strain, stress, stress_lower, stress_upper,
             title=title, label=f"{model_name.capitalize()} Prediction", ci=ci
         )
 
-    # Save CSV if requested
     if save_csv:
         filename_prefix = f"por{porosity}_T{T}_rate{rate}_step{strain_step}"
         save_stress_strain_csv(
