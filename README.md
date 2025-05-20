@@ -1,5 +1,8 @@
 # poromat
 
+[![Python 3.10](https://img.shields.io/badge/python-3.10-blue.svg)](https://www.python.org/downloads/release/python-3100/)
+[![Documentation Status](https://readthedocs.org/projects/poromat/badge/?version=latest)](https://poromat.readthedocs.io/en/latest/)
+
 A Python package for modeling stress–strain behavior of porous titanium alloys under various strain rates and temperatures, based on extremely limited experimental data.
 
 ## Project Summary
