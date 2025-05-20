@@ -5,6 +5,8 @@
 
 A Python package for modeling stress–strain behavior of porous titanium alloys under various strain rates and temperatures, based on extremely limited experimental data.
 
+![3D Stress-Strain Plot](results/outputs/sample_3d.png)
+
 ## Project Summary
 
 This project constructs global stress–strain prediction models for porous Ti alloys using only 38 sets of uniaxial compression tests. Guided by the Zener–Arrhenius (ZA) constitutive framework, I implement three regression approaches and evaluate them using a Leave-One-Porosity-Out (LOPO) framework. Generalization performance is statistically compared via Friedman and Nemenyi tests. Meta-learning shows advantages on unseen porosity conditions.
