@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [0.1.2] - 2025-05-19
+## [0.1.2] - 2025-05-20
 ### Added
 - `poromat.download_data()` function to download required training data (`full_data.csv`) from GitHub.
 - Improved error message when data file is missing in `meta` model, guiding user to run `download_data()`.

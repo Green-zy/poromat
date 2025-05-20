@@ -50,6 +50,17 @@ I conducted **three rounds of Leave-One-Porosity-Out (LOPO)** experiments, each 
 
 Model performance was compared using the **Friedman test**, followed by the **Nemenyi post-hoc test**. [Evaluation Result](https://github.com/Green-zy/poromat/tree/master/results/evaluations)
 
+- **Null Hypothesis (H₀):** All models have equal performance (no significant difference).
+- **Alternative Hypothesis (H₁):** At least one model performs significantly differently from the others.
+- **Significance Level (α):** 0.05
+
+| porosity         |   interp |   lgbm   |   meta   |
+|:-----------------|:--------:|:--------:|:--------:|
+| 0                | 1295.760 | 1284.390 | 955.802  |
+| 26               |  184.148 |  269.047 | 100.576  |
+| 36               |  261.527 |  284.586 | 177.866  |
+| **Friedman p-value** |         – |       –   |  0.097   |
+
 - No model showed statistically significant superiority (**p > 0.05**).
 - However, ranking metrics consistently favored **meta-learning** on unseen porosity conditions.
 - Due to only 3 porosity groups, **statistical power is limited**.
