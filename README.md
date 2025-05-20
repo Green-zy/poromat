@@ -5,7 +5,7 @@
 
 A Python package for modeling stress–strain behavior of porous titanium alloys under various strain rates and temperatures, based on extremely limited experimental data.
 
-![3D Stress-Strain Plot](results/outputs/sample_3d.png)
+![Sample_figure](results/outputs/sample_3d.png)
 
 ## Project Summary
 
