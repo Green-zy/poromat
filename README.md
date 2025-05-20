@@ -40,6 +40,27 @@ This project constructs global stress–strain prediction models for porous Ti a
    Two hidden layers (see [code](https://github.com/Green-zy/poromat/blob/master/src/poromat/models/meta_net.py)) trained using [learn2learn](https://learn2learn.net/) for fast adaptation to new porosity conditions.  
    Supports **credible intervals** via MC Dropout.
 
+All the pre-trained models are saved in [Release v0.1.2-models](https://github.com/Green-zy/poromat/releases/tag/v0.1.2-models).
+
+## Model Comparison
+
+I conducted **three rounds of Leave-One-Porosity-Out (LOPO)** experiments, each time holding out one porosity level for testing.
+
+### Statistical Evaluation
+
+Model performance was compared using the **Friedman test**, followed by the **Nemenyi post-hoc test**. [Evaluation Result](https://github.com/Green-zy/poromat/tree/master/results/evaluations)
+
+- No model showed statistically significant superiority (**p > 0.05**).
+- However, ranking metrics consistently favored **meta-learning** on unseen porosity conditions.
+- Due to only 3 porosity groups, **statistical power is limited**.
+
+### Recommendation
+
+Based on both performance trends and materials knowledge:
+
+- **Meta-learning** captures more nonlinearity and adapts better to new porosity conditions.
+- **Interpolation** performs similarly and is easier to interpret.
+
 ## Installation and Model File Setup
 
 **Environment Setup:** This project requires Python 3.10. 
@@ -84,6 +105,8 @@ strain, stress, stress_lower, stress_upper = poromat.generate_prediction(
 | `poromat.plot()`         | Plot stress–strain curve, with optional uncertainty (only for `"meta"` model) |
 | `poromat.save_csv()`     | Save predicted strain and stress values to CSV file   |
 | `generate_prediction()`  | Predict stress–strain curve using one of the regression models (`meta`, `lightgbm`, or `interpolation`) |
+| `poromat.download_data()`  | Download training data required for meta-learning adaptation   |
+| `poromat.download_all_models()`  | Download pre-trained models |
 
 ---
 
