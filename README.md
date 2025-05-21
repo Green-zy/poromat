@@ -35,8 +35,8 @@ This project constructs global stress–strain prediction models for porous Ti a
 
 ## Regression Methods
 
-1. **Adaboost + Decision Tree (Smoothed)**  
-   Custom interpolator with smoothing, performing interpolation across strain rate, temperature, and porosity dimensions.
+1. **Interpolation**  
+   Custom interpolator with Adaboost + Decision Tree smoothing, performing interpolation across strain rate, temperature, and porosity dimensions.
 
 2. **LightGBM**  
    Gradient boosting regression on standardized features, trained directly on the limited dataset.
