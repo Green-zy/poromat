@@ -79,8 +79,13 @@ Based on both performance trends and materials knowledge:
 
 ## Installation and Model File Setup
 
-**Environment Setup:** This project requires Python 3.10. 
+**Environment Setup:** This project requires Python 3.10. Recommend to set the environment and dependencies by **env.yml** under project root directory.
 
+```bash
+conda env create -f env.yml
+conda activate poromat
+```
+Then, install the package by:
 ```bash
 pip install poromat==0.1.2
 ```
